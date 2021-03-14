@@ -1,8 +1,8 @@
 package presentator
 
 import (
-	"go-study-sample/src/lib/adaptor/presentator/userPresentator"
-	"go-study-sample/src/lib/domain/model/userModel"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/adaptor/presentator/userPresentator"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/domain/model/userModel"
 )
 
 type IUserPresentator interface {

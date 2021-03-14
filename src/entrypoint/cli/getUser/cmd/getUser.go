@@ -4,12 +4,11 @@ import (
 	"fmt"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"go-study-sample/src/lib/adaptor/controller/userController"
-	"go-study-sample/src/lib/adaptor/presentator/userPresentator"
-	"go-study-sample/src/lib/adaptor/repository/userRepository"
-	"go-study-sample/src/lib/application/usecase"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/adaptor/controller/userController"
 	"os"
 )
+
+var controller *userController.UserJsonController
 var rootCmd = &cobra.Command{
 	Use:   "hugo",
 	Short: "Hugo is a very fast static site generator",
@@ -19,33 +18,23 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		log.SetLevel(log.Level(5))
-		repository, err := userRepository.New()
-		if err != nil {
-			log.Fatal(err)
-		}
-		presentator, err := userPresentator.New()
+		log.Print(controller)
+		result, err := controller.GetUser()
 		if err != nil {
 			log.Fatal(err)
 
-			usecase, err := usecase.New(repository, presentator)
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			controller, err := userController.New(*usecase)
-			if err != nil {
-				log.Fatal(err)
-			}
-			result, err := controller.GetUser()
-			log.Print(result)
-			log.Print(&result)
-
 		}
+		log.Print(result)
 	},
 }
 
 
-func Execute() {
+func Execute(ctl *userController.UserJsonController) {
+	if ctl == nil {
+		log.Fatal("controller is nil")
+	}
+	controller = ctl
+
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

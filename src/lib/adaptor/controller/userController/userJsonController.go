@@ -2,8 +2,8 @@ package userController
 
 import (
 	"github.com/pkg/errors"
-	"go-study-sample/src/lib/adaptor/presentator/userPresentator"
-	"go-study-sample/src/lib/application/usecase"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/adaptor/presentator/userPresentator"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/application/usecase"
 )
 
 type UserJsonController struct {
@@ -20,7 +20,7 @@ func (rcv UserJsonController) GetUser() (userPresentator.UserOutputData, error) 
 
 }
 
-func New(useCase usecase.GetUserInteractor) (*UserJsonController, error) {
-	controller := UserJsonController{useCase}
+func New(useCase *usecase.GetUserInteractor) (*UserJsonController, error) {
+	controller := UserJsonController{*useCase}
 	return &controller, nil
 }

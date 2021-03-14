@@ -3,9 +3,9 @@ package usecase
 import (
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
-	"go-study-sample/src/lib/adaptor/presentator/userPresentator"
-	"go-study-sample/src/lib/application/interface/presentator"
-	"go-study-sample/src/lib/application/interface/repository"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/adaptor/presentator/userPresentator"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/application/interface/presentator"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/application/interface/repository"
 )
 
 type GetUserInteractor struct {

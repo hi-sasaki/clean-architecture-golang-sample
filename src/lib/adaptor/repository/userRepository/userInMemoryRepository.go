@@ -3,7 +3,7 @@ package userRepository
 import (
 	"github.com/pkg/errors"
 	log "github.com/sirupsen/logrus"
-	"go-study-sample/src/lib/domain/model/userModel"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/domain/model/userModel"
 	"time"
 )
 

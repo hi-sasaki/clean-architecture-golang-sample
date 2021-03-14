@@ -3,7 +3,7 @@ package model
 import (
 	log "github.com/sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
-	"go-study-sample/src/lib/domain/model/userModel"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/domain/model/userModel"
 	"math"
 	"testing"
 	"time"

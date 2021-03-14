@@ -1,9 +1,14 @@
 package main
 
 import (
-	"go-study-sample/src/entrypoint/cli/getUser/cmd"
-	)
+	"github.com/rikodao/clean-architecture-golang-sample/src/entrypoint/cli/getUser/cmd"
+	log "github.com/sirupsen/logrus"
+)
 
 func main() {
-	cmd.Execute()
+	controller, err := InitializeUserController()
+	if err != nil {
+		log.Fatal(err)
+	}
+	cmd.Execute(controller)
 }

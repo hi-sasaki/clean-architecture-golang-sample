@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"go-study-sample/src/lib/domain/model/userModel"
+	"github.com/rikodao/clean-architecture-golang-sample/src/lib/domain/model/userModel"
 )
 
 type IUserRepository interface {
