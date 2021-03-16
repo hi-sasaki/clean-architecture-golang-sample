@@ -11,11 +11,12 @@ import (
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/adaptor/repository/userRepository"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/usecase"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/command/cobra"
+	"github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/command/interface"
 )
 
 // Injectors from wire.go:
 
-func InitializeCommand() (cobra.Command, error) {
+func InitializeCommand() (_interface.Command, error) {
 	userInMemoryRepository, err := userRepository.New()
 	if err != nil {
 		return nil, err

@@ -11,10 +11,10 @@ import (
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/repository"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/usecase"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/command/cobra"
-
+	_interface "github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/command/interface"
 )
 
-func InitializeCommand() (cobra.Command,error) {
+func InitializeCommand() (_interface.Command,error) {
 
 	wire.Build(
 		cobra.NewCommand,
