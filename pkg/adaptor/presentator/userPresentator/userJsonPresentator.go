@@ -9,7 +9,6 @@ import (
 
 type UserOutputData string
 type UserJsonPresentator struct {
-	
 }
 
 func (receiver *UserJsonPresentator) Serialize(user *userModel.UserData) (UserOutputData, error) {

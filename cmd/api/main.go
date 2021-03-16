@@ -5,6 +5,6 @@ import (
 )
 
 func main() {
-	router, _ :=InitializeRouter()
+	router, _ := InitializeRouter()
 	http.ListenAndServe(":3000", router)
 }

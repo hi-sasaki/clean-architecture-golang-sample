@@ -14,7 +14,7 @@ import (
 	_interface "github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/command/interface"
 )
 
-func InitializeCommand() (_interface.Command,error) {
+func InitializeCommand() (_interface.Command, error) {
 
 	wire.Build(
 		cobra.NewCommand,

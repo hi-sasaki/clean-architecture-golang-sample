@@ -1,17 +1,11 @@
 package cobra
 
 import (
-	"fmt"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/adaptor/controller/userController"
 	_interface "github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/command/interface"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"net/http"
-	"os"
-
 )
-
-
 
 func NewCommand(controller *userController.UserJsonController) _interface.Command {
 	return &cobra.Command{
@@ -27,7 +21,6 @@ func NewCommand(controller *userController.UserJsonController) _interface.Comman
 			result, err := controller.GetUser()
 			if err != nil {
 				log.Fatal(err)
-
 			}
 			log.Print(result)
 		},

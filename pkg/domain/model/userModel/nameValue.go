@@ -9,7 +9,7 @@ const (
 	minimumNameLength = 1
 )
 
-func newNameValue(name string)(*nameValue, error) {
+func newNameValue(name string) (*nameValue, error) {
 	if len(name) < minimumNameLength {
 		return nil, errors.New("名前を入力して下さい。")
 	}

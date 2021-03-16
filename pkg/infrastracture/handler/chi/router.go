@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func  newRouter(controller *userController.UserJsonController) *chi.Mux {
+func newRouter(controller *userController.UserJsonController) *chi.Mux {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Get("/healthz", func(w http.ResponseWriter, r *http.Request) {

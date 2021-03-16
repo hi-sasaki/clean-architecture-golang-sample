@@ -11,8 +11,8 @@ import (
 
 func TestUserEntitySuccess(t *testing.T) {
 	jst, _ := time.LoadLocation("Asia/Tokyo")
-	myBirthDay := time.Date(1991,11,4,0,0,0,0, jst)
-	result, err := userModel.New("naoto","oiso", myBirthDay)
+	myBirthDay := time.Date(1991, 11, 4, 0, 0, 0, 0, jst)
+	result, err := userModel.New("naoto", "oiso", myBirthDay)
 	if err != nil {
 		t.Fatalf("failed test %#v", err)
 	}
@@ -25,18 +25,18 @@ func TestUserEntitySuccess(t *testing.T) {
 
 func TestUserEntityAgeCheckFailed(t *testing.T) {
 	tooYoungBirthday := time.Now().Add(-time.Hour * 340)
-	_, err := userModel.New("naoto","oiso", tooYoungBirthday)
-	assert.Error(t,err, "TestUserEntityAgeCheckFailed")
+	_, err := userModel.New("naoto", "oiso", tooYoungBirthday)
+	assert.Error(t, err, "TestUserEntityAgeCheckFailed")
 }
 
 func TestUserEntityNameEmptyCheckFailed(t *testing.T) {
 	tooYoungBirthday := time.Now().Add(-time.Hour * 340)
-	_, err := userModel.New("","oiso", tooYoungBirthday)
-	assert.Error(t,err, "TestUserEntityNameEmptyCheckFailed")
+	_, err := userModel.New("", "oiso", tooYoungBirthday)
+	assert.Error(t, err, "TestUserEntityNameEmptyCheckFailed")
 }
 
 func TestUserEntityNameOverCheckFailed(t *testing.T) {
 	tooYoungBirthday := time.Now().Add(-time.Hour * 340)
-	_, err := userModel.New("naoto","oisosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", tooYoungBirthday)
-	assert.Error(t,err, "TestUserEntityNameOverCheckFailed")
+	_, err := userModel.New("naoto", "oisosssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss", tooYoungBirthday)
+	assert.Error(t, err, "TestUserEntityNameOverCheckFailed")
 }

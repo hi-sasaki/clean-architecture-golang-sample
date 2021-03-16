@@ -14,9 +14,7 @@ import (
 	"net/http"
 )
 
-
-
-func InitializeRouter() (http.Handler,error) {
+func InitializeRouter() (http.Handler, error) {
 
 	wire.Build(
 		chi.NewHandler,

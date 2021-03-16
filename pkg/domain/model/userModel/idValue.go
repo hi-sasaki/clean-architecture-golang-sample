@@ -6,7 +6,7 @@ import (
 
 type idValue string
 
-func newIdValue()  (*idValue, error) {
+func newIdValue() (*idValue, error) {
 	id := idValue(uuid.New().String())
 
 	return &id, nil

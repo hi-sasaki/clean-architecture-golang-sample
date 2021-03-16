@@ -16,11 +16,11 @@ type GetUserInteractor struct {
 func (rcv *GetUserInteractor) Handle() (userPresentator.UserOutputData, error) {
 	log.Debug("GetUserInteractor Handle start")
 
-	user,err := rcv.userRepository.GetUser()
+	user, err := rcv.userRepository.GetUser()
 	if err != nil {
 		return "", errors.Wrap(err, "Wrap in Handle GetUserInteractor: ")
 	}
-	result,err := rcv.userPresentator.Serialize(user)
+	result, err := rcv.userPresentator.Serialize(user)
 	if err != nil {
 		return "", errors.Wrap(err, "Wrap in Handle GetUserInteractor: ")
 	}
@@ -29,7 +29,7 @@ func (rcv *GetUserInteractor) Handle() (userPresentator.UserOutputData, error) {
 		"result": result,
 	}).Debug("GetUserInteractor Handle end")
 
-	return result,nil
+	return result, nil
 }
 
 func New(userRepository repository.IUserRepository, userPresentator presentator.IUserPresentator) (*GetUserInteractor, error) {

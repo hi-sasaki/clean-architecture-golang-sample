@@ -8,15 +8,14 @@ import (
 )
 
 type UserInMemoryRepository struct {
-
 }
 
 func (rcv *UserInMemoryRepository) GetUser() (*userModel.UserData, error) {
 	log.Debug("UserInMemoryRepository GetUser start")
 
 	jst, _ := time.LoadLocation("Asia/Tokyo")
-	myBirthDay := time.Date(1999,1,1,0,0,0,0, jst)
-	userInstance, err := userModel.New("naoto","oiso",myBirthDay)
+	myBirthDay := time.Date(1999, 1, 1, 0, 0, 0, 0, jst)
+	userInstance, err := userModel.New("naoto", "oiso", myBirthDay)
 	if err != nil {
 		return nil, errors.Wrap(err, "Wrap in GetUser UserInMemoryRepository: ")
 	}
@@ -26,7 +25,7 @@ func (rcv *UserInMemoryRepository) GetUser() (*userModel.UserData, error) {
 		"userData": userData,
 	}).Debug("UserInMemoryRepository GetUser end")
 
-	return userData,nil
+	return userData, nil
 
 }
 
