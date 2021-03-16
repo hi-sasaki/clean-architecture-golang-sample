@@ -10,11 +10,12 @@ import (
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/adaptor/presentator/userPresentator"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/adaptor/repository/userRepository"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/usecase"
+	"github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/command/cobra"
 )
 
 // Injectors from wire.go:
 
-func InitializeUserController() (*userController.UserJsonController, error) {
+func InitializeCommand() (cobra.Command, error) {
 	userInMemoryRepository, err := userRepository.New()
 	if err != nil {
 		return nil, err
@@ -31,5 +32,6 @@ func InitializeUserController() (*userController.UserJsonController, error) {
 	if err != nil {
 		return nil, err
 	}
-	return userJsonController, nil
+	command := cobra.NewCommand(userJsonController)
+	return command, nil
 }

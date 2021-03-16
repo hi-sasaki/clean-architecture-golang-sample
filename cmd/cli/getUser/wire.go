@@ -10,11 +10,14 @@ import (
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/presentator"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/repository"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/usecase"
+	"github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/command/cobra"
+
 )
 
-func InitializeUserController() (*userController.UserJsonController,error) {
+func InitializeCommand() (cobra.Command,error) {
 
 	wire.Build(
+		cobra.NewCommand,
 		userController.New,
 		usecase.New,
 		userRepository.New,
