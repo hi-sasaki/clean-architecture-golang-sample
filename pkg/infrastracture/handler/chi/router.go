@@ -28,3 +28,6 @@ func  newRouter(controller *userController.UserJsonController) *chi.Mux {
 	return r
 
 }
+func NewHandler(controller *userController.UserJsonController) http.Handler {
+	return http.Handler(newRouter(controller))
+}

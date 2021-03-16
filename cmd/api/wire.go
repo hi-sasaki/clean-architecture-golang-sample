@@ -10,11 +10,16 @@ import (
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/presentator"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/repository"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/usecase"
+	"github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/handler/chi"
+	"net/http"
 )
 
-func InitializeUserController() (*userController.UserJsonController,error) {
+
+
+func InitializeRouter() (http.Handler,error) {
 
 	wire.Build(
+		chi.NewHandler,
 		userController.New,
 		usecase.New,
 		userRepository.New,

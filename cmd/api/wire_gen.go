@@ -10,11 +10,13 @@ import (
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/adaptor/presentator/userPresentator"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/adaptor/repository/userRepository"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/usecase"
+	"github.com/rikodao/clean-architecture-golang-sample/pkg/infrastracture/handler/chi"
+	"net/http"
 )
 
 // Injectors from wire.go:
 
-func InitializeUserController() (*userController.UserJsonController, error) {
+func InitializeRouter() (http.Handler, error) {
 	userInMemoryRepository, err := userRepository.New()
 	if err != nil {
 		return nil, err
@@ -31,5 +33,6 @@ func InitializeUserController() (*userController.UserJsonController, error) {
 	if err != nil {
 		return nil, err
 	}
-	return userJsonController, nil
+	handler := chi.NewHandler(userJsonController)
+	return handler, nil
 }
