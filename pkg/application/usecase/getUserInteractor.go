@@ -5,6 +5,7 @@ import (
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/adaptor/presentator/userPresentator"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/presentator"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/repository"
+	"github.com/rikodao/clean-architecture-golang-sample/pkg/domain/model/userModel"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -20,7 +21,9 @@ func (rcv *GetUserInteractor) Handle() (userPresentator.UserOutputData, error) {
 	if err != nil {
 		return "", errors.Wrap(err, "Wrap in Handle GetUserInteractor: ")
 	}
-	result, err := rcv.userPresentator.Serialize(user)
+	userData := userModel.Data(*user)
+
+	result, err := rcv.userPresentator.Serialize(userData)
 	if err != nil {
 		return "", errors.Wrap(err, "Wrap in Handle GetUserInteractor: ")
 	}

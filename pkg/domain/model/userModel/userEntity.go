@@ -5,13 +5,6 @@ import (
 	"time"
 )
 
-type UserData struct {
-	Id         string
-	FirstName  string
-	FamilyName string
-	Birthday   time.Time
-}
-
 // 先頭を小文字にすることで外部パッケージから参照できないようにする
 type UserEntity struct {
 	id         idValue
@@ -58,13 +51,4 @@ func (rcv *UserEntity) Age() int {
 
 func (rcv *UserEntity) FullName() string {
 	return string(rcv.familyName + rcv.firstName)
-}
-
-func (rcv *UserEntity) Value() *UserData {
-	return &UserData{
-		rcv.id.value(),
-		rcv.firstName.value(),
-		rcv.familyName.value(),
-		rcv.birthday.value(),
-	}
 }

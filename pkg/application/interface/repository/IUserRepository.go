@@ -5,5 +5,5 @@ import (
 )
 
 type IUserRepository interface {
-	GetUser() (*userModel.UserData, error)
+	GetUser() (*userModel.UserEntity, error)
 }
