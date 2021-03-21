@@ -5,9 +5,9 @@ import (
 )
 
 type UserData struct {
-	Id         string `json:"id"`
-	FirstName  string `json:"firstName"`
-	FamilyName string `json:"familyName"`
+	Id         string    `json:"id"`
+	FirstName  string    `json:"firstName"`
+	FamilyName string    `json:"familyName"`
 	Birthday   time.Time `json:"birthday"`
 }
 

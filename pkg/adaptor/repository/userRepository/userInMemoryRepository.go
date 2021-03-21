@@ -12,14 +12,13 @@ type UserInMemoryRepository struct {
 
 func (rcv *UserInMemoryRepository) GetUser() (*userModel.UserEntity, error) {
 	log.Debug("UserInMemoryRepository GetUser start")
-
 	jst, _ := time.LoadLocation("Asia/Tokyo")
-	myBirthDay := time.Date(1999, 1, 1, 0, 0, 0, 0, jst)
-	user, err := userModel.New("naoto", "oiso", myBirthDay)
+	myBirthDay := time.Date(1991, 11, 4, 0, 0, 0, 0, jst)
+	builder, err := userModel.NewUserBuilder("naoto", "oiso", myBirthDay)
 	if err != nil {
 		return nil, errors.Wrap(err, "Wrap in GetUser UserInMemoryRepository: ")
 	}
-
+	user := builder.Build()
 
 	log.WithFields(log.Fields{
 		"user": user,

@@ -6,10 +6,10 @@ import (
 
 type idValue string
 
-func newIdValue() (*idValue, error) {
+func newIdValue() *idValue {
 	id := idValue(uuid.New().String())
 
-	return &id, nil
+	return &id
 }
 
 func (rcv idValue) value() string {

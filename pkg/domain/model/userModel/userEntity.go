@@ -12,37 +12,51 @@ type UserEntity struct {
 	familyName nameValue
 	birthday   birthdayValue
 }
+type UserBuilder struct {
+	userEntity *UserEntity
+}
 
 // コンストラクタ関数
-func New(firstName string, familyName string, birthday time.Time) (*UserEntity, error) {
-
-	createdID, err := newIdValue()
-	if err != nil {
-		return nil, err
-	}
-
-	createdFirstName, err := newNameValue(firstName)
+func NewUserBuilder(firstName string, familyName string, birthday time.Time) (*UserBuilder, error) {
+	firstNameInstance, err := newNameValue(firstName)
 	if err != nil {
 		return nil, errors.Wrap(err, "Wrap in New userEntity: ")
 	}
 
-	createdFamilyName, err := newNameValue(familyName)
+	familyNameInstance, err := newNameValue(familyName)
 	if err != nil {
 		return nil, errors.Wrap(err, "Wrap in New userEntity: ")
 	}
 
-	createdBirthday, err := newBirthdayValue(birthday)
+	birthdayInstance, err := newBirthdayValue(birthday)
 	if err != nil {
 		return nil, errors.Wrap(err, "Wrap in New userEntity: ")
 	}
 
 	user := UserEntity{
-		id:         *createdID,
-		firstName:  *createdFirstName,
-		familyName: *createdFamilyName,
-		birthday:   *createdBirthday,
+		firstName:  *firstNameInstance,
+		familyName: *familyNameInstance,
+		birthday:   *birthdayInstance,
 	}
-	return &user, nil
+
+	return &UserBuilder{&user}, nil
+}
+
+func (rcv *UserBuilder) AddId(id string) *UserBuilder {
+	rcv.userEntity.id = idValue(id)
+	return rcv
+}
+func (rcv *UserBuilder) Build() *UserEntity {
+	if rcv.userEntity.id.value() == "" {
+		createdID := newIdValue()
+		rcv.userEntity.id = *createdID
+	}
+	return rcv.userEntity
+
+}
+
+func (rcv *UserEntity) Id() string {
+	return rcv.id.value()
 }
 
 func (rcv *UserEntity) Age() int {
