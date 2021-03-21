@@ -6,4 +6,5 @@ import (
 
 type IUserRepository interface {
 	GetUser() (*userModel.UserEntity, error)
+    GetUGetUserById(id string) (*userModel.UserEntity, error)
 }

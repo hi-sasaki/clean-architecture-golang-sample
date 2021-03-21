@@ -19,7 +19,8 @@ func InitializeRouter() (http.Handler, error) {
 	wire.Build(
 		chi.NewHandler,
 		userController.New,
-		usecase.New,
+		usecase.NewGetUserInteractor,
+		usecase.NewGetUserByIdInteractor,
 		userRepository.New,
 		userPresentator.New,
 		wire.Bind(new(repository.IUserRepository), new(*userRepository.UserInMemoryRepository)),

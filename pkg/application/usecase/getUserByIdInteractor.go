@@ -5,19 +5,20 @@ import (
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/adaptor/presentator/userPresentator"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/presentator"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/repository"
+	"github.com/rikodao/clean-architecture-golang-sample/pkg/application/interface/controller"
 	"github.com/rikodao/clean-architecture-golang-sample/pkg/domain/model/userModel"
 	log "github.com/sirupsen/logrus"
 )
 
-type GetUserInteractor struct {
+type GetUserByIdInteractor struct {
 	userRepository  repository.IUserRepository
 	userPresentator presentator.IUserPresentator
 }
 
-func (rcv *GetUserInteractor) Handle() (userPresentator.UserOutputData, error) {
+func (rcv *GetUserByIdInteractor) Handle(command controller.GetUserByIdCommand) (userPresentator.UserOutputData, error) {
 	log.Debug("GetUserInteractor Handle start")
 
-	user, err := rcv.userRepository.GetUser()
+	user, err := rcv.userRepository.GetUGetUserById(command.Id)
 	if err != nil {
 		return "", errors.Wrap(err, "Wrap in Handle GetUserInteractor: ")
 	}
@@ -35,7 +36,7 @@ func (rcv *GetUserInteractor) Handle() (userPresentator.UserOutputData, error) {
 	return result, nil
 }
 
-func NewGetUserInteractor(userRepository repository.IUserRepository, userPresentator presentator.IUserPresentator) (*GetUserInteractor, error) {
-	useCace := GetUserInteractor{userRepository, userPresentator}
+func NewGetUserByIdInteractor(userRepository repository.IUserRepository, userPresentator presentator.IUserPresentator) (*GetUserByIdInteractor, error) {
+	useCace := GetUserByIdInteractor{userRepository, userPresentator}
 	return &useCace, nil
 }

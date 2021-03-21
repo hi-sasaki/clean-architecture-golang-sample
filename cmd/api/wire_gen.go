@@ -25,11 +25,15 @@ func InitializeRouter() (http.Handler, error) {
 	if err != nil {
 		return nil, err
 	}
-	getUserInteractor, err := usecase.New(userInMemoryRepository, userJsonPresentator)
+	getUserInteractor, err := usecase.NewGetUserInteractor(userInMemoryRepository, userJsonPresentator)
 	if err != nil {
 		return nil, err
 	}
-	userJsonController, err := userController.New(getUserInteractor)
+	getUserByIdInteractor, err := usecase.NewGetUserByIdInteractor(userInMemoryRepository, userJsonPresentator)
+	if err != nil {
+		return nil, err
+	}
+	userJsonController, err := userController.New(getUserInteractor, getUserByIdInteractor)
 	if err != nil {
 		return nil, err
 	}

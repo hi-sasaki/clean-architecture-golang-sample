@@ -17,7 +17,7 @@ import (
 func InitializeCommand() (_interface.Command, error) {
 
 	wire.Build(
-		cobra.NewCommand,
+		cobra.NewCommand2,
 		userController.New,
 		usecase.NewGetUserInteractor,
 		usecase.NewGetUserByIdInteractor,

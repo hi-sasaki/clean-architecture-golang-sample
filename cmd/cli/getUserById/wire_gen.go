@@ -37,6 +37,6 @@ func InitializeCommand() (_interface.Command, error) {
 	if err != nil {
 		return nil, err
 	}
-	command := cobra.NewCommand(userJsonController)
+	command := cobra.NewCommand2(userJsonController)
 	return command, nil
 }

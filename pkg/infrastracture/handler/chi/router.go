@@ -25,6 +25,22 @@ func newRouter(controller *userController.UserJsonController) *chi.Mux {
 		w.Write([]byte(result))
 
 	})
+
+
+	r.Get("/user/{userID}", func(w http.ResponseWriter, r *http.Request) {
+		log.SetLevel(log.Level(5))
+		id := chi.URLParam(r, "userID")
+		if id == "" {
+			log.Fatal("userIDが空です")
+		}
+		result, err := controller.GetUserById(id)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		w.Write([]byte(result))
+
+	})
 	return r
 
 }
