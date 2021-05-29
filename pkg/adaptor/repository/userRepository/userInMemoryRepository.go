@@ -29,7 +29,7 @@ func (rcv *UserInMemoryRepository) GetUser() (*userModel.UserEntity, error) {
 }
 
 func (rcv *UserInMemoryRepository) GetUGetUserById(id string) (*userModel.UserEntity, error) {
-	log.Debug("UserInMemoryRepository GetUser start")
+	log.Debug("UserInMemoryRepository GetUGetUserById start")
 	jst, _ := time.LoadLocation("Asia/Tokyo")
 	myBirthDay1 := time.Date(1990, 11, 4, 0, 0, 0, 0, jst)
 	builder1, err := userModel.NewUserBuilder("naoto", "oiso", myBirthDay1)
