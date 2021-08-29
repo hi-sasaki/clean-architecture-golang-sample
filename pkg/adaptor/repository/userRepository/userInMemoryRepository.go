@@ -52,7 +52,7 @@ func (rcv *UserInMemoryRepository) GetUGetUserById(id string) (*userModel.UserEn
 	}
 	user3 := builder3.AddId("0c51fe73-cbaf-432c-aa1a-3731f2b982c1").Build()
 
-	users := []userModel.UserEntity {*user1,*user2,*user3}
+	users := []userModel.UserEntity{*user1, *user2, *user3}
 	user := find(users, func(user userModel.UserEntity) bool {
 		return user.Id() == id
 	})
@@ -67,14 +67,13 @@ func (rcv *UserInMemoryRepository) GetUGetUserById(id string) (*userModel.UserEn
 func find(vs []userModel.UserEntity, f func(userModel.UserEntity) bool) *userModel.UserEntity {
 
 	for _, v := range vs {
-		log.Printf(v.FullName(),f(v))
+		log.Printf(v.FullName(), f(v))
 		if f(v) {
 			return &v
 		}
 	}
 	return nil
 }
-
 
 // コンストラクタ関数
 func New() (*UserInMemoryRepository, error) {
