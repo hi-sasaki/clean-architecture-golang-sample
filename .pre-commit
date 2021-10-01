@@ -1,0 +1,16 @@
+#!/bin/sh
+
+gofiles=$(git diff --cached --name-only --diff-filter=ACM | grep '.go$')
+[ -z "$gofiles" ] && exit 0
+
+echo  "gofmt -s -w $gofiles"
+unformatted=$(gofmt -l -w $gofiles)
+
+[ -z "$unformatted" ] && exit 0
+
+echo >&2 "Info: Running gofmt as some Go files are not formatted with gofmt."
+for fn in $unformatted; do
+    git add $fn
+done
+
+exit 0
