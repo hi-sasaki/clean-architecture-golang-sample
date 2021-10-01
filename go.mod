@@ -1,4 +1,4 @@
-module github.com/rikodao/clean-architecture-golang-sample
+module github.com/hi-sasaki/clean-architecture-golang-sample
 
 go 1.16
 
