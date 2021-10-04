@@ -6,10 +6,16 @@ import (
 )
 
 type User struct {
-	service *service.User
+	Service *service.User
+}
+
+func ProviderUser(service service.User) *User {
+	return &User{
+		Service: &service,
+	}
 }
 
 func (u *User) GetByID() (*model.User, error) {
-	u.service.GetByID()
+	u.Service.GetByID()
 	return nil, nil
 }
