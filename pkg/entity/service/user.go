@@ -1,11 +1,16 @@
 package service
 
-import "github.com/hi-sasaki/clean-architecture-golang-sample/pkg/entity/repository"
+import (
+	"context"
+
+	"github.com/hi-sasaki/clean-architecture-golang-sample/pkg/entity/model"
+	"github.com/hi-sasaki/clean-architecture-golang-sample/pkg/entity/repository"
+)
 
 type User struct {
 	User repository.User
 }
 
-func (u *User) GetByID() {
-	//u.User.GetByID()
+func (u *User) GetByID(ctx context.Context, id string) (*model.User, error) {
+	return u.User.GetByID(ctx, id)
 }

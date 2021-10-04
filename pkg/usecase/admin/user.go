@@ -1,8 +1,10 @@
 package usecase
 
 import (
-	"github.com/hi-sasaki/clean-architecture-golang-sample/pkg/entity/model"
+	"context"
+
 	"github.com/hi-sasaki/clean-architecture-golang-sample/pkg/entity/service"
+	"github.com/hi-sasaki/clean-architecture-golang-sample/pkg/usecase/admin/inout"
 )
 
 type User struct {
@@ -15,7 +17,16 @@ func ProviderUser(service service.User) *User {
 	}
 }
 
-func (u *User) GetByID() (*model.User, error) {
-	u.Service.GetByID()
-	return nil, nil
+func (u *User) GetByID(ctx context.Context, id string) (*inout.User, error) {
+
+	res, err := u.Service.GetByID(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+	user := &inout.User{
+		ID:        res.ID,
+		FirstName: res.FirstName,
+		LastName:  res.LastName,
+	}
+	return user, nil
 }

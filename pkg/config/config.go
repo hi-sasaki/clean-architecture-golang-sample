@@ -11,9 +11,9 @@ var (
 )
 
 func mustGetenv(key string) string {
-	value := os.Getenv("")
-	if value != "" {
-		panic(key + "is empty")
+	value := os.Getenv(key)
+	if value == "" {
+		panic(key + " is empty")
 	}
 	return value
 }
