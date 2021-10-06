@@ -1,1 +1,3 @@
-*wire_gen.go
+tool/login/node_modules
+tool/login/package-lock.json
+tool/login/package.json
